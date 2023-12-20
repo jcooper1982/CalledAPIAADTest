@@ -1,0 +1,9 @@
+@CalledAPIAADTest_HostAddress = https://calledapiaadtest.azurewebsites.net/
+#@CalledAPIAADTest_HostAddress = https://localhost:7095
+@Bearer_Token = JWT Goes here
+
+GET {{CalledAPIAADTest_HostAddress}}/api2/downstream
+Accept: application/json
+Authorization: Bearer {{Bearer_Token}}
+
+###
