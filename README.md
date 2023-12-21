@@ -1,3 +1,5 @@
+This demo is largely based on the blog post https://jaliyaudagedara.blogspot.com/2023/10/calling-aspnet-core-web-api-secured.html.  It's purpose is to illustrate having an API use AAD based Managed Identity to authenticate to a downstream API.
+
 This is the Downstream API, corresponding to the upstream API from https://github.com/jcooper1982/CallingAPIAADTest
 
 This API is locked down such that it can only be called by callers which have valid roles over the audience "api://CalledAPIAADTest" corresponding to the valid App Registration linked below.
