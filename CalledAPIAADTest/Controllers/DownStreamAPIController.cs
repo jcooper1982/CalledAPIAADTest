@@ -1,5 +1,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Diagnostics;
+using OpenTelemetry.Trace;
 
 namespace CalledAPIAADTest.Controllers
 {
@@ -22,6 +24,21 @@ namespace CalledAPIAADTest.Controllers
             {
                 API2Response = "This is the downstream response"
             };
+
+            _logger.LogInformation("Downstream API call worked");
+
+            var activity = Activity.Current;
+
+            try
+            {
+                throw new Exception("Test exception2");
+            }
+            // If an exception is thrown, catch it and set the activity status to "Ok".
+            catch (Exception ex)
+            {
+                activity?.SetStatus(ActivityStatusCode.Ok);
+                activity?.RecordException(ex);
+            }
 
             return Ok(response);
         }
